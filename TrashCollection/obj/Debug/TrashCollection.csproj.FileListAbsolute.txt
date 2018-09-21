@@ -1,0 +1,2 @@
+C:\Users\pghod\Desktop\DevCodeCamp\Assignments\TrashCollection\TrashCollection\TrashCollection\obj\Debug\TrashCollection.csprojAssemblyReference.cache
+C:\Users\pghod\Desktop\DevCodeCamp\Assignments\TrashCollection\TrashCollection\TrashCollection\obj\Debug\TrashCollection.csproj.CoreCompileInputs.cache
