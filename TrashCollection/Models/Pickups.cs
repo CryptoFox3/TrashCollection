@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace GarbageCollection.Models
+namespace TrashCollection.Models
 {
     public class Pickups
     {
@@ -14,9 +14,9 @@ namespace GarbageCollection.Models
         public string PickupWeekDay {get; set;}
         public DateTime PickupDate { get; set; }
 
-        [ForeignKey("CustomerModels")]
+        [ForeignKey("Customer")]
         public int CustomerId { get; set; }
-        public CustomerModels CustomerModels { get; set; }
+        public Customer Customer { get; set; }
 
         public int Zipcode { get; set; }
         public bool Repeat { get; set; }

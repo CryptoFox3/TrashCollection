@@ -5,13 +5,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace GarbageCollection.Models
+namespace TrashCollection.Models
 {
     public class Employee
     {
         [Key]
         public int EmployeeId { get; set; }
-        
+
         public string Username { get; set; }
         public string Email { get; set; }
         public int Zipcode { get; set; }
