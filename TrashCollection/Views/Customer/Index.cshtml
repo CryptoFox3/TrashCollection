@@ -1,0 +1,68 @@
+﻿@model IEnumerable<TrashCollection.Models.Customer>
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+<h2>Customers</h2>
+<br />
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+
+
+<table class="table table-active table-hover table-bordered">
+    <tr>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Username)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.ZipCode)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.AmountDue)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.ZipCode)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.AmountDue)
+            </td>
+
+            <td class="text-center">
+                <a href="@Url.Action("Edit", "Customers", new { id = item.CustomerId })" class="fas fa-pencil-alt fa-lg "></a>&nbsp; &nbsp;
+                <a href="@Url.Action("Details", "Customers", new { id = item.CustomerId })" class="fas fa-address-card fa-lg "></a>&nbsp; &nbsp;
+                <a href="@Url.Action("Delete", "Customers", new { id = item.CustomerId })" class="fas fa-trash-alt fa-lg "></a>
+            </td>
+        </tr>
+    }
+
+</table>

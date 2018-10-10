@@ -3,7 +3,7 @@ namespace TrashCollection.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddedModelsAndRoles : DbMigration
+    public partial class init : DbMigration
     {
         public override void Up()
         {
@@ -11,8 +11,9 @@ namespace TrashCollection.Migrations
                 "dbo.Customers",
                 c => new
                     {
-                        CustomersId = c.Int(nullable: false, identity: true),
+                        CustomerId = c.Int(nullable: false, identity: true),
                         Username = c.String(),
+                        FullName = c.String(),
                         FirstName = c.String(),
                         LastName = c.String(),
                         Email = c.String(),
@@ -24,10 +25,10 @@ namespace TrashCollection.Migrations
                         State = c.String(),
                         ZipCode = c.Int(nullable: false),
                         AmountDue = c.Double(nullable: false),
-                        PickupDate = c.DateTime(nullable: false),
+                        AccountHold = c.Boolean(nullable: false),
                         ApplicationUserId = c.String(maxLength: 128),
                     })
-                .PrimaryKey(t => t.CustomersId)
+                .PrimaryKey(t => t.CustomerId)
                 .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
                 .Index(t => t.ApplicationUserId);
             
@@ -36,6 +37,7 @@ namespace TrashCollection.Migrations
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
+                        UserRole = c.String(),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),

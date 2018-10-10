@@ -206,17 +206,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201809220000532_AddedModelsAndRoles.cs" />
-    <Compile Include="Migrations\201809220000532_AddedModelsAndRoles.Designer.cs">
-      <DependentUpon>201809220000532_AddedModelsAndRoles.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810081700395_UpdatedModels.cs" />
-    <Compile Include="Migrations\201810081700395_UpdatedModels.Designer.cs">
-      <DependentUpon>201810081700395_UpdatedModels.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810101920526_AddedFullNameToCustomerModel.cs" />
-    <Compile Include="Migrations\201810101920526_AddedFullNameToCustomerModel.Designer.cs">
-      <DependentUpon>201810101920526_AddedFullNameToCustomerModel.cs</DependentUpon>
+    <Compile Include="Migrations\201810102036210_init.cs" />
+    <Compile Include="Migrations\201810102036210_init.Designer.cs">
+      <DependentUpon>201810102036210_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -331,10 +323,11 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_EmployeeLayout.cshtml" />
     <Content Include="Views\Shared\_CustomerLayout.cshtml" />
+    <Content Include="Views\Customer\Create.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Customer\" />
     <Folder Include="Views\Employees\" />
   </ItemGroup>
   <ItemGroup>
@@ -343,21 +336,15 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201809220000532_AddedModelsAndRoles.resx">
-      <DependentUpon>201809220000532_AddedModelsAndRoles.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810081700395_UpdatedModels.resx">
-      <DependentUpon>201810081700395_UpdatedModels.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810101920526_AddedFullNameToCustomerModel.resx">
-      <DependentUpon>201810101920526_AddedFullNameToCustomerModel.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201810102036210_init.resx">
+      <DependentUpon>201810102036210_init.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

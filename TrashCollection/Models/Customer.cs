@@ -9,8 +9,9 @@ namespace TrashCollection.Models
 {
     public class Customer
     {
+        
         [Key]
-        public int CustomersId { get; set; }
+        public int CustomerId { get; set; }
         public string Username { get; set; }
         [Display(Name = "Full Name")]
         public string FullName { get; set; }
@@ -38,11 +39,7 @@ namespace TrashCollection.Models
         public double AmountDue { get; set; }
         [Display(Name = "Account on hold")]
         public bool AccountHold { get; set; }
-        [Display(Name = "Pickup Date")]
-
-        [DataType(DataType.Date)]
-        public DateTime PickupDate { get; set; }
-
+       
         [ForeignKey("ApplicationUser")]
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }

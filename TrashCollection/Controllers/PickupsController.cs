@@ -17,8 +17,8 @@ namespace TrashCollection.Controllers
         // GET: Pickups
         public ActionResult Index()
         {
-            var pickups = db.Pickups.Include(p => p.Customer);
-            return View(pickups.ToList());
+            var pickups = db.Pickups.ToList();
+            return View(pickups);
         }
 
         // GET: Pickups/Details/5

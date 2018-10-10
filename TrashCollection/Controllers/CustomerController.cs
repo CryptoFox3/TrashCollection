@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace TrashCollection.Controllers
         public ActionResult Index()
         {
             var customers = db.Customers.ToList();
-            return View();
+            return View(customers);
         }
 
        
@@ -36,28 +37,34 @@ namespace TrashCollection.Controllers
         }
 
         // GET: Pickups/Create
+        // GET: CustomerModels/Create
         public ActionResult Create()
         {
-            //ViewBag.CustomerId = new SelectList(db.Customers, "CustomersId", "Username");
-            return View();
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Where(u => u.Id == userId).FirstOrDefault();
+            Customer customer = new Customer();
+            customer.ApplicationUserId = user.Id;
+            customer.Email = user.Email;
+            customer.Username = user.UserName;
+            return View(customer);
         }
 
-        // POST: Pickups/Create
+        // POST: CustomerModels/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PickupId,PickupWeekDay,PickupDate,CustomerId,Zipcode,Repeat,IsCompleted,PickupCost")] Pickups pickups)
+        public ActionResult Create([Bind(Include = "CustomerId,ApplicationUserId,Username,FirstName,LastName,Email,Address,ZipCode,AmountDue,FullName")] Customer customer)
         {
+            customer.FullName = customer.FirstName + " " + customer.LastName;
             if (ModelState.IsValid)
             {
-                db.Pickups.Add(pickups);
+                db.Customers.Add(customer);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home", null);
             }
 
-            ViewBag.CustomerId = new SelectList(db.Customers, "CustomersId", "Username", pickups.CustomerId);
-            return View(pickups);
+            return View(customer);
         }
 
         // GET: Pickups/Edit/5
