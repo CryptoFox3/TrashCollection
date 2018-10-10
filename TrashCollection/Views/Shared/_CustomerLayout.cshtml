@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -19,13 +20,9 @@
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
 
-                <li>@Html.ActionLink("Home", "Index", "Home", new { @class = "btn btn-success" })</li>&nbsp;
-                <li>@Html.ActionLink("About", "About", "Home", new { @class = "btn btn-success" })</li>&nbsp;
-                <li>@Html.ActionLink("Contact", "Contact", "Home", new { @class = "btn btn-success" })</li>&nbsp;
-                <li>@Html.ActionLink("Employee Portal", "EmployeePortal", "EmployeeModels", null, new { @class = "btn btn-success" })</li>&nbsp;
                 <li>@Html.ActionLink("Customer Portal", "CustomerPortal", "CustomerModels", null, new { @class = "btn btn-success" })</li>&nbsp;
-                <li>@Html.ActionLink("Pickups", "Index", "Pickups", new { @class = "btn btn-success" })</li>
-
+                <li>@Html.ActionLink("Set weekly pickup", "SetPickupDay", "CustomerModels", new { @class = "btn btn-success" })</li>&nbsp;
+                <li>@Html.ActionLink("About", "About", "Home", new { @class = "btn btn-success" })</li> &nbsp;
 
 
             </ul>
@@ -37,7 +34,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Paxton Hodgson</p>
         </footer>
     </div>
 
@@ -47,3 +44,5 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+
