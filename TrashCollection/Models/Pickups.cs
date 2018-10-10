@@ -12,11 +12,11 @@ namespace TrashCollection.Models
         [Key]
         public int PickupId { get; set; }
         public string PickupWeekDay {get; set;}
+        [DataType(DataType.Date)]
         public DateTime PickupDate { get; set; }
-
         [ForeignKey("Customer")]
         public int CustomerId { get; set; }
-        public Customer Customer { get; set; }
+        public virtual Customer Customer { get; set; }
 
         public int Zipcode { get; set; }
         public bool Repeat { get; set; }
