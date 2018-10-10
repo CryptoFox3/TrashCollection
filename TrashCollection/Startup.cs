@@ -18,6 +18,7 @@ namespace TrashCollection
         {
             ApplicationDbContext context = new ApplicationDbContext();
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
             if (!roleManager.RoleExists("Customer"))
             {
                 var role = new IdentityRole();
@@ -30,13 +31,6 @@ namespace TrashCollection
                 role.Name = "Employee";
                 roleManager.Create(role);
             }
-            if (!roleManager.RoleExists("Admin"))
-            {
-                var role = new IdentityRole();
-                role.Name = "Admin";
-                roleManager.Create(role);
-            }
-
         }
     }
 }
