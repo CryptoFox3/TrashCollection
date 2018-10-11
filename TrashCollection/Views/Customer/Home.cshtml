@@ -1,10 +1,10 @@
-﻿@model TrashCollection.Models.Customer
+﻿@model TrashCollection.Models.ViewModels.PickupViewModels
 
 @{
     ViewBag.Title = "Home";
 }
 <br/>
-<h2>Welcome @Html.DisplayFor(model => model.FirstName)!</h2>
+<h2>Welcome @Html.DisplayFor(model => model.Customer.FirstName)!</h2>
 
 <div class="d-flex justify-content-between">
     <div class="d-flex flex-column">
@@ -18,51 +18,51 @@
         <dl class="dl-horizontal">
 
             <dt>
-                @Html.DisplayNameFor(model => model.Username)
+                @Html.DisplayNameFor(model => model.Customer.Username)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Username)
+                @Html.DisplayFor(model => model.Customer.Username)
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.FirstName)
+                @Html.DisplayNameFor(model => model.Customer.FirstName)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.FirstName)
+                @Html.DisplayFor(model => model.Customer.FirstName)
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.LastName)
+                @Html.DisplayNameFor(model => model.Customer.LastName)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.LastName)
+                @Html.DisplayFor(model => model.Customer.LastName)
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.Email)
+                @Html.DisplayNameFor(model => model.Customer.Email)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Email)
+                @Html.DisplayFor(model => model.Customer.Email)
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.Address)
+                @Html.DisplayNameFor(model => model.Customer.Address)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Address)
+                @Html.DisplayFor(model => model.Customer.Address)
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.ZipCode)
+                @Html.DisplayNameFor(model => model.Customer.ZipCode)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.ZipCode)
+                @Html.DisplayFor(model => model.Customer.ZipCode)
             </dd>
 
            
@@ -72,17 +72,37 @@
 
     </div>
     <div class="d-flex flex-column">
+        @if (Model.Pickup != null)
+        {
+            <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+                <div class="card-header">My pickup</div>
+                <div class="card-body">
+                    <h4 class="card-title">Pickup set</h4>
+                    <p class="card-text"></p>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="card text-white bg-warning mb-3" style="max-width: 20rem;">
+                <div class="card-header">My pickup</div>
+                <div class="card-body">
+                    <h4 class="card-title">No pickup set</h4>
+                    <p class="card-text">Please use the button below to create a pickup and set pickup day<br /><br /> &nbsp @Html.ActionLink("Create Pickup", "Create","Pickups", new { id = Model.Customer.CustomerId }, new { @class = "btn btn-success btn-md" })</p>
+                </div>
+            </div>
 
+        }
     </div>
     <div class="d-flex-column">
 
 
-        @if (Model.AmountDue > 0)
+        @if (Model.Customer.AmountDue > 0)
         {
             <div class="card text-white bg-warning mb-3" style="max-width: 20rem;">
                 <div class="card-header">Billing</div>
                 <div class="card-body">
-                    <h4 class="card-title">Current Balance: $@Html.DisplayFor(model => model.AmountDue)</h4>
+                    <h4 class="card-title">Current Balance: $@Html.DisplayFor(model => model.Customer.AmountDue)</h4>
                     <p class="card-text">Please use the button below to pay for our services @Html.ActionLink("Edit", "Edit", null, new { @class = "btn btn-success btn-md" })</p>
                 </div>
             </div>

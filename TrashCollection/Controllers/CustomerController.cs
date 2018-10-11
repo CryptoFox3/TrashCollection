@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TrashCollection.Models;
+using TrashCollection.Models.ViewModels;
 
 namespace TrashCollection.Controllers
 {
@@ -24,7 +25,14 @@ namespace TrashCollection.Controllers
         {
             var userId = User.Identity.GetUserId();
             var customer = db.Customers.Where(c => c.ApplicationUserId == userId).FirstOrDefault();
-            return View(customer);
+            PickupViewModels pickupInfo = new PickupViewModels()
+            {
+                Pickup = new Pickups(),
+                Customer = new Customer()
+            };
+            pickupInfo.Pickup = db.Pickups.Where(p => p.CustomerId == customer.CustomerId).FirstOrDefault();
+            pickupInfo.Customer = customer;
+            return View(pickupInfo);
         }
        
         // GET: Pickups/Details/5
@@ -80,30 +88,29 @@ namespace TrashCollection.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pickups pickups = db.Pickups.Find(id);
-            if (pickups == null)
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CustomerId = new SelectList(db.Customers, "CustomersId", "Username", pickups.CustomerId);
-            return View(pickups);
+            return View(customer);
         }
 
-        // POST: Pickups/Edit/5
+        // POST: CustomerModels/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PickupId,PickupWeekDay,PickupDate,CustomerId,Zipcode,Repeat,IsCompleted,PickupCost")] Pickups pickups)
+        public ActionResult Edit([Bind(Include = "CustomerId,ApplicationUserId,Username,FirstName,LastName,Email,Address,ZipCode,AmountDue,PickupDate,FullName")] Customer customer)
         {
+            customer.FullName = customer.FirstName + " " + customer.LastName;
             if (ModelState.IsValid)
             {
-                db.Entry(pickups).State = EntityState.Modified;
+                db.Entry(customer).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CustomerId = new SelectList(db.Customers, "CustomersId", "Username", pickups.CustomerId);
-            return View(pickups);
+            return View(customer);
         }
 
         // GET: Pickups/Delete/5

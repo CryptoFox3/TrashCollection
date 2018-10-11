@@ -31,7 +31,8 @@
             @Html.DisplayNameFor(model => model.AmountDue)
         </th>
 
-        <th></th>
+        <th class="text-center"></th
+><th></th>
     </tr>
 
     @foreach (var item in Model)
@@ -56,11 +57,12 @@
             <td class="text-center">
                 @Html.DisplayFor(modelItem => item.AmountDue)
             </td>
+            <td class="text-center">@Html.ActionLink("Create Pickup", "Create","Pickups", new { id = item.CustomerId }, new { @class = "btn btn-success btn-block"})</td>
 
-            <td class="text-center">
-                <a href="@Url.Action("Edit", "Customers", new { id = item.CustomerId })" class="fas fa-pencil-alt fa-lg "></a>&nbsp; &nbsp;
-                <a href="@Url.Action("Details", "Customers", new { id = item.CustomerId })" class="fas fa-address-card fa-lg "></a>&nbsp; &nbsp;
-                <a href="@Url.Action("Delete", "Customers", new { id = item.CustomerId })" class="fas fa-trash-alt fa-lg "></a>
+            <td class="text-center">    
+                <a href="@Url.Action("Edit", "Customer", new { id = item.CustomerId })" class="fas fa-pencil-alt fa-lg "></a>&nbsp; &nbsp;
+                <a href="@Url.Action("Details", "Customer", new { id = item.CustomerId })" class="fas fa-address-card fa-lg "></a>&nbsp; &nbsp;
+                <a href="@Url.Action("Delete", "Customer", new { id = item.CustomerId })" class="fas fa-trash-alt fa-lg "></a>
             </td>
         </tr>
     }

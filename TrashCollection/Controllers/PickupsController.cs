@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TrashCollection.Models;
+using TrashCollection.Models.ViewModels;
 
 namespace TrashCollection.Controllers
 {
@@ -57,18 +58,26 @@ namespace TrashCollection.Controllers
         //}
 
 
-        public ActionResult SetPickupDay(/*int id*/)
+        public ActionResult SetPickupDay(int id)
         {
-            //var pickup = db.Pickups.Where(p => p.CustomerId == id).FirstOrDefault();
-            return View();
+            var pickup = db.Pickups.Where(p => p.CustomerId == id).FirstOrDefault();
+            PickupViewModels pickupInfo = new PickupViewModels
+            {
+                Pickup = new Pickups()
+            };
+            pickupInfo.Pickup = pickup;
+            return View(pickupInfo);
         }
 
         [HttpPost]
-        public ActionResult SetPickupDay([Bind(Include = "PickupId,PickupWeekDay,PickupDate,CustomerId,Zipcode,Repeat,IsCompleted,PickupCost")] Pickups pickup)
+        public ActionResult SetPickupDay(PickupViewModels pickupInfo, int day )
         {
+
+
+
             if (ModelState.IsValid)
             {
-                db.Pickups.Add(pickup);
+                db.Pickups.Add(pickupInfo.Pickup);
                 db.SaveChanges();
                 return RedirectToAction("Home", "Client", null);
             }
@@ -77,10 +86,18 @@ namespace TrashCollection.Controllers
         }
 
         // GET: Pickups/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
-            ViewBag.CustomerId = new SelectList(db.Customers, "CustomersId", "Username");
-            return View();
+            var Pickup = new Pickups();
+            var customer = db.Customers.Where(c => c.CustomerId == id).FirstOrDefault();
+           
+           
+            Pickup.Customer = customer;
+            Pickup.PickupCost = 50.00;
+            Pickup.Repeat = true;
+            Pickup.Zipcode = customer.ZipCode;
+           
+            return View(Pickup);
         }
 
         // POST: Pickups/Create
@@ -88,17 +105,17 @@ namespace TrashCollection.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PickupId,PickupWeekDay,PickupDate,CustomerId,Zipcode,Repeat,IsCompleted,PickupCost")] Pickups pickups)
+        public ActionResult Create([Bind(Include = "PickupId,PickupWeekDay,PickupDate,CustomerId,Zipcode,Repeat,IsCompleted,PickupCost")] Pickups pickup)
         {
+ 
             if (ModelState.IsValid)
             {
-                db.Pickups.Add(pickups);
+                db.Pickups.Add(pickup);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("SetPickupDay", new { id = pickup.PickupId});
             }
 
-            ViewBag.CustomerId = new SelectList(db.Customers, "CustomersId", "Username", pickups.CustomerId);
-            return View(pickups);
+            return View(pickup);
         }
 
         // GET: Pickups/Edit/5

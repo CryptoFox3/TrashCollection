@@ -210,6 +210,10 @@
     <Compile Include="Migrations\201810102036210_init.Designer.cs">
       <DependentUpon>201810102036210_init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810111500400_PickupsFK.cs" />
+    <Compile Include="Migrations\201810111500400_PickupsFK.Designer.cs">
+      <DependentUpon>201810111500400_PickupsFK.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -217,6 +221,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Pickups.cs" />
+    <Compile Include="Models\ViewModels\PickupViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -332,9 +337,10 @@
     <Content Include="Views\Employee\Delete.cshtml" />
     <Content Include="Views\Employee\Details.cshtml" />
     <Content Include="Views\Employee\Edit.cshtml" />
-    <Content Include="Views\Employee\EmployeePortal.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\Pickups.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Employee\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -353,6 +359,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201810102036210_init.resx">
       <DependentUpon>201810102036210_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810111500400_PickupsFK.resx">
+      <DependentUpon>201810111500400_PickupsFK.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -14,14 +14,14 @@ namespace TrashCollection.Models
         public string PickupWeekDay {get; set;}
         [DataType(DataType.Date)]
         public DateTime PickupDate { get; set; }
-        [ForeignKey("Customer")]
-        public int CustomerId { get; set; }
-        public virtual Customer Customer { get; set; }
 
         public int Zipcode { get; set; }
         public bool Repeat { get; set; }
         public bool IsCompleted {get; set;}
         public double PickupCost { get; set; }
         
+        [ForeignKey("Customer")]
+        public int CustomerId { get; set; }
+        public virtual Customer Customer { get; set; }
     }
 }

@@ -1,30 +1,44 @@
-﻿
+﻿@model TrashCollection.Models.ViewModels.PickupViewModels
+
+
 @{
     ViewBag.Title = "SetPickupDay";
 }
+<br/>
+<h2>Please set your pickup day</h2>
 
-<h2>SetPickupDay</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-<div class="btn-group btn-group-toggle" data-toggle="buttons">
-    <label class="btn btn-primary">
-        <input type="radio" name="options" id="option1" autocomplete="off"> Monday
-    </label>
-    <label class="btn btn-primary">
-        <input type="radio" name="options" id="option2" autocomplete="off"> Tuesday
-    </label>
-    <label class="btn btn-primary">
-        <input type="radio" name="options" id="option3" autocomplete="off"> Wednesday
-    </label>
-    <label class="btn btn-primary">
-        <input type="radio" name="options" id="option4" autocomplete="off"> Thursday
-    </label><label class="btn btn-primary">
-        <input type="radio" name="options" id="option5" autocomplete="off"> Friday
-    </label>
-    <label class="btn btn-primary active">
-        <input type="radio" name="options" id="option6" autocomplete="off"> Saturday
-    </label>
-    <label class="btn btn-primary active">
-        <input type="radio" name="options" id="option7" autocomplete="off"> Sunday
-    </label>
-</div>
 
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-primary">
+            <input type="radio" name="options" value="1" id="option1" autocomplete="off"> Monday
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="options" value="2" id="option2" autocomplete="off"> Tuesday
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="options" value="3" id="option3" autocomplete="off"> Wednesday
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="options" value="4" id="option4" autocomplete="off"> Thursday
+        </label><label class="btn btn-primary">
+            <input type="radio" name="options" value="5" id="option5" autocomplete="off"> Friday
+        </label>
+        <label class="btn btn-primary active">
+            <input type="radio" name="options" value="6" id="option6" autocomplete="off"> Saturday
+        </label>
+        <label class="btn btn-primary active">
+            <input type="radio" name="options" value="0" id="option7" autocomplete="off"> Sunday
+        </label>
+    </div>
+    <br />
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-success" />
+        </div>
+    </div>
+}
