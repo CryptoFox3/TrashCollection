@@ -5,35 +5,37 @@
 }
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
-
+<br />
+<h2>All Pickups</h2>
+<br />
 
 
 <table class="table table-striped table-hover table-bordered">
     <tr>
-        <th class="text-center">
-            @Html.DisplayNameFor(model => model.Customer.Username)
+        <th class="text-center align-middle">
+            @Html.DisplayNameFor(model => model.Customer.FullName)
         </th>
-        <th class="text-center">
+        <th class="text-center align-middle">
             @Html.DisplayNameFor(model => model.PickupWeekDay)
         </th>
-        <th class="text-center">
+        <th class="text-center align-middle">
             @Html.DisplayNameFor(model => model.PickupDate)
         </th>
-        <th class="text-center">
+        <th class="text-center align-middle">
             @Html.DisplayNameFor(model => model.Zipcode)
         </th>
-        <th class="text-center">
-            @Html.DisplayNameFor(model => model.Repeat)
-        </th>
-        <th class="text-center">
-            @Html.DisplayNameFor(model => model.IsCompleted)
-        </th>
-        <th class="text-center">
+        <th class="text-center align-middle">
             @Html.DisplayNameFor(model => model.PickupCost)
         </th>
+        <th class="text-center align-middle">
+            @Html.DisplayNameFor(model => model.Repeat)
+        </th>
+        <th class="text-center align-middle">
+            @Html.DisplayNameFor(model => model.IsCompleted)
+        </th>
 
-        <th class="text-center">
-            @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+        <th class="text-center align-middle">
+            @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success btn-sm" })
         </th>
 
     </tr>
@@ -41,28 +43,31 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.Customer.Username)
+            <td class="text-center align-middle">
+                @Html.DisplayFor(modelItem => item.Customer.FullName)
             </td>
-            <td class="text-center">
+            <td class="text-center align-middle">
                 @Html.DisplayFor(modelItem => item.PickupWeekDay)
             </td>
-            <td class="text-center">
+            <td class="text-center align-middle">
                 @Html.DisplayFor(modelItem => item.PickupDate)
             </td>
-            <td class="text-center">
+            <td class="text-center align-middle">
                 @Html.DisplayFor(modelItem => item.Zipcode)
             </td>
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.Repeat)
+            <td class="text-center align-middle">
+                $@Html.DisplayFor(modelItem => item.PickupCost)
             </td>
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.IsCompleted)
+            <td class="text-center align-middle">
+                @if (item.Repeat == true)
+                {
+                    <i class="fas fa-redo fa-lg"></i>
+                }
             </td>
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.PickupCost)
+            <td class="text-center align-middle">
+                @Html.ActionLink("Complete", "CompletePickup", new { id = item.PickupId }, new { @class = "btn btn-success btn-sm" })
             </td>
-            <td class="text-center">
+            <td class="text-center align-middle">
                 <a href="@Url.Action("Edit", "Pickups", new { id = item.PickupId })" class="fas fa-pencil-alt fa-lg "></a>&nbsp; &nbsp;
                 <a href="@Url.Action("Details", "Pickups", new { id = item.PickupId })" class="fas fa-address-card fa-lg "></a>&nbsp; &nbsp;
                 <a href="@Url.Action("Delete", "Pickups", new { id = item.PickupId })" class="fas fa-trash-alt fa-lg "></a>

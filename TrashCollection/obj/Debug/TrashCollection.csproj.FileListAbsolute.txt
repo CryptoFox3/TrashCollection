@@ -120,5 +120,6 @@ C:\Users\pghod\Desktop\DevCodeCamp\Assignments\TrashCollection\TrashCollection\T
 C:\Users\pghod\Desktop\DevCodeCamp\Assignments\TrashCollection\TrashCollection\TrashCollection\obj\Debug\TrashCollection.pdb
 C:\Users\pghod\Desktop\DevCodeCamp\Assignments\TrashCollection\TrashCollection\TrashCollection\obj\Debug\TrashCollection.Migrations.init.resources
 C:\Users\pghod\Desktop\DevCodeCamp\Assignments\TrashCollection\TrashCollection\TrashCollection\obj\Debug\TrashCollection.csproj.GenerateResource.cache
-C:\Users\pghod\Desktop\DevCodeCamp\Assignments\TrashCollection\TrashCollection\TrashCollection\obj\Debug\TrashCollection.csprojAssemblyReference.cache
 C:\Users\pghod\Desktop\DevCodeCamp\Assignments\TrashCollection\TrashCollection\TrashCollection\obj\Debug\TrashCollection.Migrations.PickupsFK.resources
+C:\Users\pghod\Desktop\DevCodeCamp\Assignments\TrashCollection\TrashCollection\TrashCollection\obj\Debug\TrashCollection.Migrations.AddedCompleteTimeToPickupsModel.resources
+C:\Users\pghod\Desktop\DevCodeCamp\Assignments\TrashCollection\TrashCollection\TrashCollection\obj\Debug\TrashCollection.csprojAssemblyReference.cache

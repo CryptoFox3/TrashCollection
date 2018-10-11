@@ -63,6 +63,43 @@ namespace TrashCollection.Controllers
 
         //    return View();
         //}
+        public ActionResult CompletePickup(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Pickups pickups = db.Pickups.Find(id);
+            if (pickups == null)
+            {
+                return HttpNotFound();
+            }
+            return View(pickups);
+        }
+
+        // POST: Pickups/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CompletePickup([Bind(Include = "PickupId,PickupWeekDay,PickupDate,CustomerId,Zipcode,Repeat,IsCompleted,CompleteTime,PickupCost")] Pickups pickups)
+        {
+            pickups.IsCompleted = true;
+            pickups.CompleteTime = DateTime.Now;
+
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(pickups).State = EntityState.Modified;
+                db.SaveChanges();
+                if (User.IsInRole("Employee"))
+                {
+                    return RedirectToAction("ApplyCustomerFee", "Customer", new { id = pickups.CustomerId });
+                }
+            }
+            return View(pickups);
+        }
+
 
 
         public ActionResult SetPickupDay(int id)
@@ -72,17 +109,40 @@ namespace TrashCollection.Controllers
         }
 
         [HttpPost]
-        public ActionResult SetPickupDay([Bind(Include = "PickupId,PickupWeekDay,PickupDate,CustomerId,Zipcode,Repeat,IsCompleted,PickupCost")] Pickups pickup, string options)
+        public ActionResult SetPickupDay([Bind(Include = "PickupId,PickupWeekDay,PickupDate,CustomerId,Zipcode,Repeat,IsCompleted,CompleteTime,PickupCost")] Pickups pickup, string options)
         {
+            pickup.PickupDate = GetDatefromDay(options);
+            pickup.PickupWeekDay = options;
 
             if (ModelState.IsValid)
             {
-                db.Pickups.Add(pickup);
+                db.Entry(pickup).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Home", "Client", null);
+                if (User.IsInRole("Employee"))
+                {
+                    return RedirectToAction("Index", "Pickups", null);
+                }
+                else
+                {
+                    return RedirectToAction("Home", "Customer", null);
+                }
             }
 
             return View();
+        }
+
+        private DateTime GetDatefromDay(string options)
+        {
+            var date = DateTime.Today;
+            for (int i = 0; i < 7; i++)
+            {
+                if (options == date.DayOfWeek.ToString())
+                {
+                    return date;
+                }
+                date = date.AddDays(1);
+            }
+            return date = DateTime.Now;
         }
 
         // GET: Pickups/Create
@@ -105,14 +165,14 @@ namespace TrashCollection.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PickupId,PickupWeekDay,PickupDate,CustomerId,Zipcode,Repeat,IsCompleted,PickupCost")] Pickups pickup)
+        public ActionResult Create([Bind(Include = "PickupId,CustomerId,PickupWeekDay,PickupDate,Zipcode,Repeat,IsCompleted,PickupCost")] Pickups pickup)
         {
             if (ModelState.IsValid)
             {
 
                 db.Pickups.Add(pickup);
                 db.SaveChanges();
-                return RedirectToAction("SetPickupDay", new { id = pickup.PickupId});
+                return RedirectToAction("SetPickupDay", new { id = pickup.CustomerId});
             }
 
             return View(pickup);
@@ -174,7 +234,15 @@ namespace TrashCollection.Controllers
             Pickups pickups = db.Pickups.Find(id);
             db.Pickups.Remove(pickups);
             db.SaveChanges();
+
+            if (User.IsInRole("Employee"))
+            {
             return RedirectToAction("Index");
+            }
+            else
+            {
+            return RedirectToAction("Home", "Customer", null);
+            }
         }
 
         protected override void Dispose(bool disposing)

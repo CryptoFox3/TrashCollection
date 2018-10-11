@@ -9,13 +9,14 @@
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.PickupId)
     @Html.HiddenFor(model => model.CustomerId)
     @Html.HiddenFor(model => model.IsCompleted)
-    @Html.HiddenFor(model => model.PickupDate)
-    @Html.HiddenFor(model => model.PickupId)
-    @Html.HiddenFor(model => model.PickupWeekDay)
+    @Html.HiddenFor(model => model.CompleteTime)
     @Html.HiddenFor(model => model.Repeat)
     @Html.HiddenFor(model => model.Zipcode)
+    @Html.HiddenFor(model => model.PickupCost)
+  
     
 
  <div class="d-flex flex-column">

@@ -15,36 +15,46 @@
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
+        @Html.HiddenFor(model => model.PickupId)
+        @Html.HiddenFor(model => model.CustomerId)
+        @Html.HiddenFor(model => model.IsCompleted)
+        @Html.HiddenFor(model => model.CompleteTime)
+        @Html.HiddenFor(model => model.PickupCost)
+        @Html.HiddenFor(model => model.Repeat)
+        @Html.HiddenFor(model => model.Zipcode)
+        @Html.HiddenFor(model => model.PickupWeekDay)
+        @Html.HiddenFor(model => model.PickupDate)
 
 
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
             <label class="btn btn-primary">
-                <input type="radio" name="options" value="1" id="option1" autocomplete="off"> Monday
+                <input type="radio" name="options" value="Monday" id="option1" autocomplete="off"> Monday
             </label>
             <label class="btn btn-primary">
-                <input type="radio" name="options" value="2" id="option2" autocomplete="off"> Tuesday
+                <input type="radio" name="options" value="Tuesday" id="option2" autocomplete="off"> Tuesday
             </label>
             <label class="btn btn-primary">
-                <input type="radio" name="options" value="3" id="option3" autocomplete="off"> Wednesday
+                <input type="radio" name="options" value="Wednesday" id="option3" autocomplete="off"> Wednesday
             </label>
             <label class="btn btn-primary">
-                <input type="radio" name="options" value="4" id="option4" autocomplete="off"> Thursday
+                <input type="radio" name="options" value="Thursday" id="option4" autocomplete="off"> Thursday
             </label><label class="btn btn-primary">
-                <input type="radio" name="options" value="5" id="option5" autocomplete="off"> Friday
+                <input type="radio" name="options" value="Friday" id="option5" autocomplete="off"> Friday
             </label>
             <label class="btn btn-primary active">
-                <input type="radio" name="options" value="6" id="option6" autocomplete="off"> Saturday
+                <input type="radio" name="options" value="Saturday" id="option6" autocomplete="off"> Saturday
             </label>
             <label class="btn btn-primary active">
-                <input type="radio" name="options" value="0" id="option7" autocomplete="off"> Sunday
+                <input type="radio" name="options" value="Sunday" id="option7" autocomplete="off"> Sunday
             </label>
         </div>
         <br />
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-success" />
+        <div class="d-flex flex-row justify-content-center">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-success" />
+                </div>
             </div>
         </div>
-}
-    </div>
+    }
+</div>

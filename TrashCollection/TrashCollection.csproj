@@ -214,6 +214,10 @@
     <Compile Include="Migrations\201810111500400_PickupsFK.Designer.cs">
       <DependentUpon>201810111500400_PickupsFK.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810112102458_AddedCompleteTimeToPickupsModel.cs" />
+    <Compile Include="Migrations\201810112102458_AddedCompleteTimeToPickupsModel.Designer.cs">
+      <DependentUpon>201810112102458_AddedCompleteTimeToPickupsModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -338,10 +342,10 @@
     <Content Include="Views\Employee\Details.cshtml" />
     <Content Include="Views\Employee\Edit.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
-    <Content Include="Views\Employee\Pickups.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Employee\Home.cshtml" />
     <Content Include="Views\Pickups\_IndexPickupsByZip.cshtml" />
+    <Content Include="Views\Pickups\CompletePickup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -363,6 +367,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810111500400_PickupsFK.resx">
       <DependentUpon>201810111500400_PickupsFK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810112102458_AddedCompleteTimeToPickupsModel.resx">
+      <DependentUpon>201810112102458_AddedCompleteTimeToPickupsModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

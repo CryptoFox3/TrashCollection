@@ -8,7 +8,7 @@
 <hr/>
 <div class="d-flex justify-content-between">
     <div class="d-flex flex-column">
-        
+
 
         <div class="card border-dark mb-3 shadow" style="max-width: 20rem;">
             <div class="card-header">
@@ -35,14 +35,19 @@
                     </ul>
                 </p>
             </div>
-        
+
         </div>
     </div>
     <div class="d-flex flex-column">
         @if (Model.Pickup != null)
         {
             <div class="card text-white bg-info mb-3 shadow" style="max-width: 20rem;">
-                <div class="card-header">My pickup</div>
+                <div class="card-header">
+                    My pickup
+                    <div class="float-right">
+                        <a href="@Url.Action("Delete", "Pickups", new { id = Model.Pickup.PickupId})" class="fas fa-trash-alt fa-lg"></a>
+                    </div>
+                </div>
                 <div class="card-body">
                     <h4 class="card-title">Trash pickup has been set</h4>
                     <p class="card-text">
@@ -60,7 +65,7 @@
                 <div class="card-header">My pickup</div>
                 <div class="card-body">
                     <h4 class="card-title">No pickup set</h4>
-                    <p class="card-text">Please use the button below to create a pickup and set pickup day<br /><br /> &nbsp @Html.ActionLink("Create Pickup", "Create","Pickups", new { id = Model.Customer.CustomerId }, new { @class = "btn btn-success btn-md" })</p>
+                    <p class="card-text">Please use the button below to create a pickup and set pickup day<br /><br /> &nbsp @Html.ActionLink("Create Pickup", "Create", "Pickups", new { id = Model.Customer.CustomerId }, new { @class = "btn btn-success btn-md" })</p>
                 </div>
             </div>
 
@@ -111,7 +116,7 @@
                 <div class="card-header">One time pickup</div>
                 <div class="card-body">
                     <h4 class="card-title">No pickup set</h4>
-                    <p class="card-text">Use the button below to create a one time pickup <br/><br/> @Html.ActionLink("Create Pickup", "Create", "Pickups", new { id = Model.Customer.CustomerId }, new { @class = "btn btn-success btn-md" })</p>
+                    <p class="card-text">Use the button below to create a one time pickup <br /><br /> @Html.ActionLink("Create Pickup", "Create", "Pickups", new { id = Model.Customer.CustomerId }, new { @class = "btn btn-success btn-md" })</p>
                 </div>
             </div>
         }
@@ -119,7 +124,7 @@
 
 
     </div>
-    </div>
+</div>
 
 
 
