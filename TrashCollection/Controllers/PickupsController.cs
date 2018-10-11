@@ -36,6 +36,46 @@ namespace TrashCollection.Controllers
             return View(pickups);
         }
 
+
+        //public ActionResult CreateOneTime(int id)
+        //{
+        //    var pickup = db.Pickups.Where(p => p.CustomerId == id).FirstOrDefault();
+        //    return View(pickup);
+        //}
+
+        //[HttpPost]
+        //public ActionResult SetPickupDay([Bind(Include = "PickupId,PickupWeekDay,PickupDate,CustomerId,Zipcode,Repeat,IsCompleted,PickupCost")] Pickups pickup
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Pickups.Add(pickup);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Home", "Client", null);
+        //    }
+
+        //    return View();
+        //}
+
+
+        public ActionResult SetPickupDay(/*int id*/)
+        {
+            //var pickup = db.Pickups.Where(p => p.CustomerId == id).FirstOrDefault();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SetPickupDay([Bind(Include = "PickupId,PickupWeekDay,PickupDate,CustomerId,Zipcode,Repeat,IsCompleted,PickupCost")] Pickups pickup)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Pickups.Add(pickup);
+                db.SaveChanges();
+                return RedirectToAction("Home", "Client", null);
+            }
+
+            return View();
+        }
+
         // GET: Pickups/Create
         public ActionResult Create()
         {

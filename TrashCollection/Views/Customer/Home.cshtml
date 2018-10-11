@@ -1,0 +1,108 @@
+﻿@model TrashCollection.Models.Customer
+
+@{
+    ViewBag.Title = "Home";
+}
+<br/>
+<h2>Welcome @Html.DisplayFor(model => model.FirstName)!</h2>
+
+<div class="d-flex justify-content-between">
+    <div class="d-flex flex-column">
+
+        @*@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-info" })*@
+        <br />
+
+        <h4>My information:</h4>
+
+
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Username)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Username)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ZipCode)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ZipCode)
+            </dd>
+
+           
+
+            @Html.ActionLink("Edit", "Edit", null, new { @class = "btn btn-info btn-md" })
+        </dl>
+
+    </div>
+    <div class="d-flex flex-column">
+
+    </div>
+    <div class="d-flex-column">
+
+
+        @if (Model.AmountDue > 0)
+        {
+            <div class="card text-white bg-warning mb-3" style="max-width: 20rem;">
+                <div class="card-header">Billing</div>
+                <div class="card-body">
+                    <h4 class="card-title">Current Balance: $@Html.DisplayFor(model => model.AmountDue)</h4>
+                    <p class="card-text">Please use the button below to pay for our services @Html.ActionLink("Edit", "Edit", null, new { @class = "btn btn-success btn-md" })</p>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+                <div class="card-header">Billing</div>
+                <div class="card-body">
+                    <h4 class="card-title">You currently owe: $0.00</h4>
+                    <p class="card-text">Thank you for doing business with Trash Collection Co</p>
+                </div>
+            </div>
+
+        }
+
+
+    </div>
+    </div>
+
+
+
+

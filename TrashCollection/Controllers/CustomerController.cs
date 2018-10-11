@@ -20,6 +20,12 @@ namespace TrashCollection.Controllers
             return View(customers);
         }
 
+        public ActionResult Home()
+        {
+            var userId = User.Identity.GetUserId();
+            var customer = db.Customers.Where(c => c.ApplicationUserId == userId).FirstOrDefault();
+            return View(customer);
+        }
        
         // GET: Pickups/Details/5
         public ActionResult Details(int? id)
