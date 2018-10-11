@@ -22,9 +22,11 @@ namespace TrashCollection.Controllers
             return View(db.Employees.ToList());
         }
 
-        public ActionResult EmployeePortal()
+        public ActionResult Home()
         {
-            return View();
+            var userId = User.Identity.GetUserId();
+            var employee = db.Employees.Find(userId);
+            return View(employee);
         }
 
         // GET: EmployeeModels/Details/5

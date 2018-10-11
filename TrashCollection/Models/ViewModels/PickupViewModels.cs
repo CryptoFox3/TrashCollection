@@ -9,6 +9,7 @@ namespace TrashCollection.Models.ViewModels
     {
         public Customer Customer { get; set; }
         public Pickups Pickup { get; set; }
+        public Pickups OneTimePickup { get; set; }
         public List<Pickups> PickupsList { get; set; }
     }
 }

@@ -28,9 +28,11 @@ namespace TrashCollection.Controllers
             PickupViewModels pickupInfo = new PickupViewModels()
             {
                 Pickup = new Pickups(),
+                OneTimePickup = new Pickups(),
                 Customer = new Customer()
             };
-            pickupInfo.Pickup = db.Pickups.Where(p => p.CustomerId == customer.CustomerId).FirstOrDefault();
+            pickupInfo.OneTimePickup = db.Pickups.Where(p => p.CustomerId == customer.CustomerId && p.Repeat == false).FirstOrDefault();
+            pickupInfo.Pickup = db.Pickups.Where(p => p.CustomerId == customer.CustomerId && p.Repeat == true).FirstOrDefault();
             pickupInfo.Customer = customer;
             return View(pickupInfo);
         }

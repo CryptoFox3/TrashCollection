@@ -22,6 +22,13 @@ namespace TrashCollection.Controllers
             return View(pickups);
         }
 
+        public ActionResult _IndexPickupsByZip(int id)
+        {
+            var employee = db.Employees.Where(e => e.EmployeeId == id).FirstOrDefault();
+            var pickups = db.Pickups.Where(p => p.Zipcode == employee.Zipcode).ToList();
+            return View(pickups);
+        }
+
         // GET: Pickups/Details/5
         public ActionResult Details(int? id)
         {
@@ -61,23 +68,16 @@ namespace TrashCollection.Controllers
         public ActionResult SetPickupDay(int id)
         {
             var pickup = db.Pickups.Where(p => p.CustomerId == id).FirstOrDefault();
-            PickupViewModels pickupInfo = new PickupViewModels
-            {
-                Pickup = new Pickups()
-            };
-            pickupInfo.Pickup = pickup;
-            return View(pickupInfo);
+            return View(pickup);
         }
 
         [HttpPost]
-        public ActionResult SetPickupDay(PickupViewModels pickupInfo, int day )
+        public ActionResult SetPickupDay([Bind(Include = "PickupId,PickupWeekDay,PickupDate,CustomerId,Zipcode,Repeat,IsCompleted,PickupCost")] Pickups pickup, string options)
         {
-
-
 
             if (ModelState.IsValid)
             {
-                db.Pickups.Add(pickupInfo.Pickup);
+                db.Pickups.Add(pickup);
                 db.SaveChanges();
                 return RedirectToAction("Home", "Client", null);
             }
@@ -90,8 +90,8 @@ namespace TrashCollection.Controllers
         {
             var Pickup = new Pickups();
             var customer = db.Customers.Where(c => c.CustomerId == id).FirstOrDefault();
-           
-           
+
+            Pickup.CustomerId = customer.CustomerId;
             Pickup.Customer = customer;
             Pickup.PickupCost = 50.00;
             Pickup.Repeat = true;
@@ -107,9 +107,9 @@ namespace TrashCollection.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "PickupId,PickupWeekDay,PickupDate,CustomerId,Zipcode,Repeat,IsCompleted,PickupCost")] Pickups pickup)
         {
- 
             if (ModelState.IsValid)
             {
+
                 db.Pickups.Add(pickup);
                 db.SaveChanges();
                 return RedirectToAction("SetPickupDay", new { id = pickup.PickupId});
